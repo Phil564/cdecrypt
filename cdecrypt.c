@@ -438,6 +438,8 @@ int main_utf8(int argc, char** argv)
         aes_setkey_dec(&ctx, WiiUCommonKey, sizeof(WiiUCommonKey) * 8);
     } else if (strcmp((char*)(&tmd->Issuer), "Root-CA00000004-CP00000010") == 0) {
         aes_setkey_dec(&ctx, WiiUCommonDevKey, sizeof(WiiUCommonDevKey) * 8);
+    } else if (strcmp((char*)(&tmd->Issuer), "Root-CA00000004-CP0000000a") == 0) {
+        aes_setkey_dec(&ctx, WiiUCommonDevKey, sizeof(WiiUCommonDevKey) * 8);
     } else {
         fprintf(stderr, "ERROR: Unknown Root type: '%s'\n", (char*)tmd + 0x140);
         goto out;
