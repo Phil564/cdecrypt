@@ -415,7 +415,7 @@ int main_utf8(int argc, char** argv)
         tmd_path = calloc(size + 16, 1);
         tik_path = calloc(size + 16, 1);
         sprintf(tmd_path, "%s%ctitle.tmd", argv[1], PATH_SEP);
-        sprintf(tik_path, "%s%ctitle.tik", argv[1], PATH_SEP);
+        sprintf(tik_path, "%s%ctitle.key", argv[1], PATH_SEP);
     }
 
     uint32_t tmd_len = read_file(tmd_path, (uint8_t**)&tmd);
@@ -448,7 +448,7 @@ int main_utf8(int argc, char** argv)
     memset(title_id, 0, sizeof(title_id));
 
     memcpy(title_id, &tmd->TitleID, 8);
-    memcpy(title_key, tik + 0x1BF, 16);
+    memcpy(title_key, tik, 16);
 
     aes_crypt_cbc(&ctx, AES_DECRYPT, sizeof(title_key), title_id, title_key, title_key);
     aes_setkey_dec(&ctx, title_key, sizeof(title_key) * 8);
