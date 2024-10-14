@@ -10,7 +10,7 @@ OBJ=${SRC:.c=.o}
 DEP=${SRC:.c=.d}
 
 # -Wno-sequence-point because *dst++ = dst[-d]; is only ambiguous for people who don't know how CPUs work.
-CFLAGS=-std=c99 -pipe -fvisibility=hidden -Wall -Wextra -Werror -Wno-sequence-point -Wno-unknown-pragmas -Wno-multichar -UNDEBUG -DAES_ROM_TABLES -D_GNU_SOURCE -O2
+CFLAGS=-std=c99 -lssl -lcrypto -pipe -fvisibility=hidden -Wall -Wextra -Werror -Wno-sequence-point -Wno-unknown-pragmas -Wno-multichar -UNDEBUG -DAES_ROM_TABLES -D_GNU_SOURCE -O2
 ifeq ($(OS),Windows_NT)
 LDFLAGS=-s -municode
 else
